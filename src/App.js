@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import NeoTimeline from './components/Timeline'
+import NeoHeader from './components/Header'
+import {Col, Row, Switch} from "antd";
+import {useState} from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [eventId, setEventId] = useState(null);
+    const runQuery = (value)=> {
+        setEventId(value)
+    };
+
+    return (
+        <Row>
+            <Col span={12} offset={6}>
+                <div className="App">
+                    <NeoHeader onQuery={runQuery}></NeoHeader>
+                    <NeoTimeline eventId={eventId}></NeoTimeline>
+                </div>
+            </Col>
+        </Row>
+    );
 }
 
 export default App;
